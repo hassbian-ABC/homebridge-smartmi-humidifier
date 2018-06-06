@@ -67,7 +67,7 @@ MiHumidifier.prototype = {
         infoService
             .setCharacteristic(Characteristic.Manufacturer, "XiaoMi")
             .setCharacteristic(Characteristic.Model, "zhimi.humidifier")
-            .setCharacteristic(Characteristic.SerialNumber, "caonimaxiaomi");
+            .setCharacteristic(Characteristic.SerialNumber, "xxxxxxxxxxxx");
         services.push(infoService);
 		
 	var humidifierService = new Service.HumidifierDehumidifier(this.name);
