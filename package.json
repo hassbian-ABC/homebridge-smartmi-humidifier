@@ -1,0 +1,22 @@
+{
+  "name": "homebridge-MiHumidifier",
+  "version": "0.0.1",
+  "description": "Mi Humidifier plugin for Homebridge",
+  "main": "index.js",
+  "author": "wei",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin",
+    "xiaomi",
+    "humidifier"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hassbian-ABC/homebridge-MiHumidifier"
+  },
+  "engines": {
+    "node": ">=7.6",
+    "homebridge": ">=0.4.1",
+    "miio": ">=0.14.1"
+  }
+}
