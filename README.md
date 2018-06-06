@@ -3,7 +3,8 @@
 
 
 Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) , [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
-   
+  
+![](https://github.com/hassbian-ABC/homebridge-MiHumidifier/blob/master/images/44FE08640FF30E03C15C0A1D3837EF3F.png)
 
  
 ## Installation
