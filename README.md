@@ -4,7 +4,6 @@
 
 Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) , [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
    
-![](https://xiaomi-mi.com/uploads/CatalogueImage/pv_xiaomi-zhimi-uvgi-air-humidifier-white-01_14627_1481298607.jpg)
 
  
 ## Installation
