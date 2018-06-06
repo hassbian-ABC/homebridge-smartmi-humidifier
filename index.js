@@ -70,34 +70,34 @@ MiHumidifier.prototype = {
             .setCharacteristic(Characteristic.SerialNumber, "caonimaxiaomi");
         services.push(infoService);
 		
-		var humidifierService = new Service.HumidifierDehumidifier(this.name);
+	var humidifierService = new Service.HumidifierDehumidifier(this.name);
         var currentHumidityCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
         var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
-		currentHumidifierDehumidifierStateCharacteristic.setProps({
+	currentHumidifierDehumidifierStateCharacteristic.setProps({
             validValues: [1,2]
         });
-		currentHumidifierDehumidifierStateCharacteristic.value = Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING;
+	currentHumidifierDehumidifierStateCharacteristic.value = Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING;
         var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
         targetHumidifierDehumidifierStateCharacteristic.setProps({
             validValues: [1]
         });
-		targetHumidifierDehumidifierStateCharacteristic.value = Characteristic.TargetHumidifierDehumidifierState.HUMIDIFYING;
+	targetHumidifierDehumidifierStateCharacteristic.value = Characteristic.TargetHumidifierDehumidifierState.HUMIDIFYING;
 
         var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
         var lockPhysicalControlsCharacteristic = humidifierService.addCharacteristic(Characteristic.LockPhysicalControls);
-		var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
+	var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
         var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
-		rotationSpeedCharacteristic.setProps({
-			minValue: 0, // idle (model:zhimi.humidifier.ca1, 0 = auto)
+	rotationSpeedCharacteristic.setProps({
+	    minValue: 0, // idle (model:zhimi.humidifier.ca1, 0 = auto)
             maxValue: 3, // high
             minStep: 1,
-		});
+	});
 		
         var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
-		var _speedToMode  = {0:'off',1:'silent', 2:'medium', 3:'high'}; 
+	var _speedToMode  = {0:'off',1:'silent', 2:'medium', 3:'high'}; 
         var _modeToSpeed = {'off':0,'silent':1, 'medium':2, 'high':3};
 		
-		    activeCharacteristic
+        activeCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
                 callback(null, result[0] === "on" ? Characteristic.Active.ACTIVE : Characteristic.Active.INACTIVE);
@@ -117,7 +117,7 @@ MiHumidifier.prototype = {
             });
         }.bind(this));
 
-    // Current State - required
+
     currentHumidifierDehumidifierStateCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
@@ -126,12 +126,10 @@ MiHumidifier.prototype = {
                 callback(err);
             });
         }.bind(this));
-    // Target State - required
+
     targetHumidifierDehumidifierStateCharacteristic.setValue(Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER);
 
 
-
-// Current Humidity - required
 currentHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["humidity"]).then(result => {
         callback(null, result[0]);
@@ -140,7 +138,6 @@ currentHumidityCharacteristic.on('get', function (callback){
     });
 }.bind(this)); 
 
-//Target Humid ity - add.Characteristic
 targetHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["target_humidity"]).then(result => {
         callback(null, result[0]);
