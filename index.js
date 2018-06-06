@@ -74,7 +74,7 @@ MiHumidifier.prototype = {
         var currentHumidityCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
         var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
 	currentHumidifierDehumidifierStateCharacteristic.setProps({
-            validValues: [1,2]
+            validValues: [0,2]
         });
 	currentHumidifierDehumidifierStateCharacteristic.value = Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING;
         var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
