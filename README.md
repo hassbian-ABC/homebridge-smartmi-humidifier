@@ -26,8 +26,8 @@ npm install -g miio@0.14.1 https://github.com/hassbian-ABC/homebridge-MiHumidifi
       "name": "智米加湿器",
       "ip": "192.168.1.77",
       "token": "7251f2fdc5eda606d9125d882c932914",
-      "showTemperature": true,
-      "nameTemperature": "加湿器温度"
+      "showTemperatureDisable": true,
+      "showTemperatureSensorName": "加湿器温度"
     }
   ]
 ```
