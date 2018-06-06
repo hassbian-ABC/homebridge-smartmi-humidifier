@@ -229,7 +229,7 @@ lockPhysicalControlsCharacteristic
 
     services.push(humidifierService);
 	
-    if(!this.config['showTemperature']) {
+    if(!this.config['showTemperatureDisable']) {
 	var temperatureSensorService = new Service.TemperatureSensor(this.config['showTemperatureSensorName']);
         temperatureSensorService
 		    .getCharacteristic(Characteristic.CurrentTemperature)
