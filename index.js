@@ -1,5 +1,5 @@
 var fs = require('fs');
-const miio = require('miio');
+const miio = require('/usr/lib/node_modules/miio');
 var Accessory, Service, Characteristic, UUIDGen;
 
 module.exports = function(homebridge) {
@@ -81,38 +81,43 @@ MiHumidifier.prototype = {
         targetHumidifierDehumidifierStateCharacteristic.setProps({
             validValues: [1]
         });
-	targetHumidifierDehumidifierStateCharacteristic.value = Characteristic.TargetHumidifierDehumidifierState.HUMIDIFYING;
+	targetHumidifierDehumidifierStateCharacteristic.value = Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER;
 
         var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
         var lockPhysicalControlsCharacteristic = humidifierService.addCharacteristic(Characteristic.LockPhysicalControls);
-	var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
+	    var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
         var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
-	rotationSpeedCharacteristic.setProps({
-	    minValue: 0, // idle (model:zhimi.humidifier.ca1, 0 = auto)
-            maxValue: 3, // high
-            minStep: 1,
-	});
+	    rotationSpeedCharacteristic.setProps({
+	      minValue: 0, // idle (model:zhimi.humidifier.ca1, 0 = auto)
+          maxValue: 3, // high
+          minStep: 1,
+	    });
 		
         var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
-	var _speedToMode  = {0:'off',1:'silent', 2:'medium', 3:'high'}; 
-        var _modeToSpeed = {'off':0,'silent':1, 'medium':2, 'high':3};
+	    var _speedToMode  = {0:'auto',1:'silent', 2:'medium', 3:'high'}; 
+        var _modeToSpeed = {'auto':0,'silent':1, 'medium':2, 'high':3};
 		
         activeCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
+		    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive: " + result);
                 callback(null, result[0] === "on" ? Characteristic.Active.ACTIVE : Characteristic.Active.INACTIVE);
             }).catch(function(err) {
+			    that.platform.log.error("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - setActive: " + value);
             that.device.call("set_power", [value ? "on" : "off"]).then(result => {
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - setActive Result: " + result);
                 if(result[0] === "ok") {
                     callback(null);
                 } else {
                     callback(new Error(result[0]));
                 }            
             }).catch(function(err) {
+				that.log.error("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - setActive Error: " + err);
                 callback(err);
             });
         }.bind(this));
@@ -121,8 +126,10 @@ MiHumidifier.prototype = {
     currentHumidifierDehumidifierStateCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive: " + result);
                 callback(null, result[0] === "on" ? Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING : Characteristic.CurrentHumidifierDehumidifierState.INACTIVE);
             }).catch(function(err) {
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive Error: " + err);
                 callback(err);
             });
         }.bind(this));
@@ -132,19 +139,24 @@ MiHumidifier.prototype = {
 
 currentHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["humidity"]).then(result => {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Humidity - getHumidity: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Humidity - getHumidity Error: " + err);
         callback(err);
     });
 }.bind(this)); 
 
 targetHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["target_humidity"]).then(result => {
+	    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Target Humidity - getHumidity: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Target Humidity - getHumidity Error: " + err);
         callback(err);
     });
 }.bind(this)).on('set', function(value, callback) {
+	        that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Target Humidity - set: " + value);
             that.device.call("set_target_humidity", [value]).then(result => {
                 if(result[0] === "ok") {
                     callback(null);
@@ -152,14 +164,17 @@ targetHumidityCharacteristic.on('get', function (callback){
                     callback(new Error(result[0]));
                 }            
             }).catch(function(err) {
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Target Humidity - set Error: " + err);
                 callback(err);
             });
         }.bind(this)); 
 		
 waterLevel.on('get', function (callback){
 	that.device.call("get_prop", ["depth"]).then(result => {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Water Level - getwaterLevel: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Water Level - getwaterLevel: " + err);
         callback(err);
     });
 }.bind(this));
@@ -167,12 +182,15 @@ waterLevel.on('get', function (callback){
 lockPhysicalControlsCharacteristic
     .on('get', function(callback) {
         that.device.call("get_prop", ["child_lock"]).then(result => {
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - getchildlock: " + result);
             callback(null, result[0] === "on" ? Characteristic.LockPhysicalControls.CONTROL_LOCK_ENABLED : Characteristic.LockPhysicalControls.CONTROL_LOCK_DISABLED);
         }).catch(function(err) {
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - getchildlock: " + err);
             callback(err);
         });
     }.bind(this))
     .on('set', function(value, callback) {
+		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - setchildlock: " + result);
         that.device.call("set_child_lock", [value ? "on" : "off"]).then(result => {
             if(result[0] === "ok") {
                 callback(null);
@@ -180,6 +198,7 @@ lockPhysicalControlsCharacteristic
                 callback(new Error(result[0]));
             }            
         }).catch(function(err) {
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - setchildlock: " + err);
             callback(err);
         });
 }.bind(this));
@@ -188,35 +207,43 @@ lockPhysicalControlsCharacteristic
   rotationSpeedCharacteristic
    .on('get', function(callback) {
             that.device.call("get_prop",["mode"]).then(result => {
-                var _mode = _modeToSpeed[result[0]];
-                callback(null, _mode);
+                var _val = _modeToSpeed[result[0]];
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode: " + result);
+                callback(null, _val);
             }).catch(function(err) {
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
-            var _mode = _speedToMode[value];
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode: " + value);
+            var _val = _speedToMode[value];
+			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode2: " + _val);
 	    if(value > 0) {
-                    that.device.call("set_mode", [_mode]).then(result => {
+                    that.device.call("set_mode", [_val]).then(result => {
+						that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode Result: " + result);
                         if(result[0] === "ok") {
                             callback(null);
                         } else {
                             callback(new Error(result[0]));
                         }
                     }).catch(function(err) {
+						that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode Error: " + err);
                         callback(err);
                     });
             }
 	  else
 	   {
-		
+		        that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMOde=0  then turn OFF: " + value);
                 that.device.call("set_power", [value ? "on" : "off"]).then(result => {
+			    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - setActive Result: " + result);
                 if(result[0] === "ok") {
                     callback(null);
                 } else {
                     callback(new Error(result[0]));
                 }            
            	 }).catch(function(err) {
+				    that.log.error("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - setActive Error: " + err);
         	        callback(err);
 	            });
 
@@ -234,9 +261,11 @@ lockPhysicalControlsCharacteristic
         temperatureSensorService
 		    .getCharacteristic(Characteristic.CurrentTemperature)
 			.on('get', function(callback) {
+				    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
                     that.device.call("get_prop", ["temp_dec"]).then(result => {
                     callback(null, result[0] / 10);
             }).catch(function(err) {
+				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
 				callback(err);
 		    });
         }.bind(this));
