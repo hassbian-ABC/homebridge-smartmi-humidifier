@@ -103,7 +103,7 @@ MiHumidifier.prototype = {
 		    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive: " + result);
                 callback(null, result[0] === "on" ? Characteristic.Active.ACTIVE : Characteristic.Active.INACTIVE);
             }).catch(function(err) {
-			    that.platform.log.error("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive Error: " + err);
+			    that.log.error("[MiHumidifier][DEBUG]HumidifierDehumidifier - Active - getActive Error: " + err);
                 callback(err);
             });
         }.bind(this))
