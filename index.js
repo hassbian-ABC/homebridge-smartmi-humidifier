@@ -1,5 +1,5 @@
 var fs = require('fs');
-const miio = require('/usr/lib/node_modules/miio');
+const miio = require('miio');
 var Accessory, Service, Characteristic, UUIDGen;
 
 module.exports = function(homebridge) {
