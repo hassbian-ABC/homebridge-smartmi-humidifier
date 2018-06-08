@@ -261,8 +261,8 @@ lockPhysicalControlsCharacteristic
         temperatureSensorService
 		    .getCharacteristic(Characteristic.CurrentTemperature)
 			.on('get', function(callback) {
-				    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
                     that.device.call("get_prop", ["temp_dec"]).then(result => {
+	            that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
                     callback(null, result[0] / 10);
             }).catch(function(err) {
 				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
