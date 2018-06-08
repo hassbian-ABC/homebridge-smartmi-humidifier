@@ -94,8 +94,8 @@ MiHumidifier.prototype = {
 	    });
 		
         var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
-	    var _speedToMode  = {0:'auto',1:'silent', 2:'medium', 3:'high'}; 
-        var _modeToSpeed = {'auto':0,'silent':1, 'medium':2, 'high':3};
+	    var speedToMode  = {0:'auto',1:'silent', 2:'medium', 3:'high'}; 
+        var modeToSpeed = {'auto':0,'silent':1, 'medium':2, 'high':3};
 		
         activeCharacteristic
         .on('get', function(callback) {
@@ -207,20 +207,17 @@ lockPhysicalControlsCharacteristic
   rotationSpeedCharacteristic
    .on('get', function(callback) {
             that.device.call("get_prop",["mode"]).then(result => {
-                var _val = _modeToSpeed[result[0]];
-				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode: " + result);
-                callback(null, _val);
+	        that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode: " + result);
+                callback(null, modeToSpeed[result[0]]);
             }).catch(function(err) {
 				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
-			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode: " + value);
-            var _val = _speedToMode[value];
-			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode2: " + _val);
+	    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode: " + value);
 	    if(value > 0) {
-                    that.device.call("set_mode", [_val]).then(result => {
+                    that.device.call("set_mode", [speedToMode[value]]).then(result => {
 						that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode Result: " + result);
                         if(result[0] === "ok") {
                             callback(null);
