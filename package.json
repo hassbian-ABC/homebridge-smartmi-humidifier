@@ -1,22 +1,52 @@
 {
-  "name": "homebridge-MiHumidifier",
-  "version": "0.0.2",
+  "_from": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git",
+  "_id": "homebridge-MiHumidifier@0.0.1",
+  "_inBundle": false,
+  "_location": "/homebridge-MiHumidifier",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/hassbian-ABC/homebridge-MiHumidifier",
+    "rawSpec": "https://github.com/hassbian-ABC/homebridge-MiHumidifier",
+    "saveSpec": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git",
+    "fetchSpec": "https://github.com/hassbian-ABC/homebridge-MiHumidifier.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git#18c7f7cd7a756fcd6f888fdaf9307b32a6fb3b10",
+  "_spec": "https://github.com/hassbian-ABC/homebridge-MiHumidifier",
+  "_where": "/root/jiaxuan/test/plugin",
+  "author": {
+    "name": "wei"
+  },
+  "bugs": {
+    "url": "https://github.com/hassbian-ABC/homebridge-MiHumidifier/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Mi Humidifier plugin for Homebridge",
-  "main": "index.js",
-  "author": "wei",
-  "license": "MIT",
+  "engines": {
+    "homebridge": ">=0.4.1",
+    "miio": ">=0.14.1",
+    "node": ">=7.6"
+  },
+  "homepage": "https://github.com/hassbian-ABC/homebridge-MiHumidifier#readme",
   "keywords": [
     "homebridge-plugin",
     "xiaomi",
     "humidifier"
   ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "homebridge-MiHumidifier",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hassbian-ABC/homebridge-MiHumidifier"
+    "url": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git"
   },
-  "engines": {
-    "node": ">=7.6",
-    "homebridge": ">=0.4.1",
-    "miio": ">=0.14.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "miio": "^0.14.1"
   }
 }
