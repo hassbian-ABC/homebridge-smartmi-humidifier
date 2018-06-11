@@ -1,6 +1,6 @@
 {
   "_from": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git",
-  "_id": "homebridge-MiHumidifier@0.0.1",
+  "_id": "homebridge-MiHumidifier@0.0.2",
   "_inBundle": false,
   "_location": "/homebridge-MiHumidifier",
   "_phantomChildren": {},
@@ -17,7 +17,6 @@
   ],
   "_resolved": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git#18c7f7cd7a756fcd6f888fdaf9307b32a6fb3b10",
   "_spec": "https://github.com/hassbian-ABC/homebridge-MiHumidifier",
-  "_where": "/root/jiaxuan/test/plugin",
   "author": {
     "name": "wei"
   },
@@ -45,7 +44,7 @@
     "type": "git",
     "url": "git+https://github.com/hassbian-ABC/homebridge-MiHumidifier.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "miio": "^0.14.1"
   }
