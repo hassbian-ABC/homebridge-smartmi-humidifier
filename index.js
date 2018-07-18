@@ -188,7 +188,7 @@ waterLevel.on('get', function (callback){
 lockPhysicalControlsCharacteristic
     .on('get', function(callback) {
         that.device.call("get_prop", ["child_lock"]).then(result => {
-			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - getchildlock: " + result);
+	that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - getchildlock: " + result);
             callback(null, result[0] === "on" ? Characteristic.LockPhysicalControls.CONTROL_LOCK_ENABLED : Characteristic.LockPhysicalControls.CONTROL_LOCK_DISABLED);
         }).catch(function(err) {
 			that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - getchildlock: " + err);
@@ -196,7 +196,7 @@ lockPhysicalControlsCharacteristic
         });
     }.bind(this))
     .on('set', function(value, callback) {
-		that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - setchildlock: " + result);
+	that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - Child Lock - setchildlock: " + value);
         that.device.call("set_child_lock", [value ? "on" : "off"]).then(result => {
             if(result[0] === "ok") {
                 callback(null);
