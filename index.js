@@ -100,8 +100,8 @@ MiHumidifier.prototype = {
 	    });
 		
         var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
-	    var speedToMode  = {0:'auto',1:'silent', 2:'medium', 3:'high'}; 
-        var modeToSpeed = {'auto':0,'silent':1, 'medium':2, 'high':3};
+	    var speedToMode  = {0:'idle',1:'silent', 2:'medium', 3:'high'}; 
+        var modeToSpeed = {'idle':0,'silent':1, 'medium':2, 'high':3};
 		
         activeCharacteristic
         .on('get', function(callback) {
