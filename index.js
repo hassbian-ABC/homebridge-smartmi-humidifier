@@ -46,7 +46,7 @@ function MiHumidifier(log, config) {
     this.config = config;
     
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
-    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by hassbian-ABC 0.0.6");
+    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by hassbian-ABC 0.0.7");
     this.log.info("[MiHumidifierPlatform][INFO]  GitHub: https://github.com/hassbian-ABC/homebridge-MiHumidifier ");
     this.log.info("[MiHumidifierPlatform][INFO]                                                                  ");
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
@@ -321,18 +321,7 @@ relativeHumidityHumidifierThresholdCharacteristic
 	    that.device.call("set_limit_hum", [value]).then(result => {
             if(result[0] === "ok") {
 				callback(null);
-                if (value > currentHumidityCharacteristic.value) {
-                    that.device.call("set_power", ["on"]).then(result => {
-                        if(result[0] === "ok") {
-                            callback(null);
-                        } else {
-                            callback(new Error(result[0]));
-                        }
-                    }).catch(function(err) {
-                        that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode Error: " + err);
-                        callback(err);
-                    });
-                }			
+                		
             } else {
                 callback(new Error(result[0]));
             }            
