@@ -15,7 +15,7 @@ If you are using Raspberry Pi, please read [Running-HomeBridge-on-a-Raspberry-Pi
 2. Make sure you can see HomeBridge in your iOS devices, if not, please go back to step 1.   
 3. Install packages.   
 ```
-npm install -g miio@0.14.1 https://github.com/hassbian-ABC/homebridge-MiHumidifier
+npm install -g https://github.com/hassbian-ABC/homebridge-MiHumidifier
 ```
 
 
