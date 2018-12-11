@@ -72,8 +72,8 @@ MiHumidifier.prototype = {
 
         var infoService = new Service.AccessoryInformation();
         infoService
-            .setCharacteristic(Characteristic.Manufacturer, "Xiaoyan Tech")
-            .setCharacteristic(Characteristic.Model, "TERNCY-DC01")
+            .setCharacteristic(Characteristic.Manufacturer, "Xiao Mi")
+            .setCharacteristic(Characteristic.Model, "MiHumidifier")
             .setCharacteristic(Characteristic.SerialNumber, "000d6f00106855fc-00");
         services.push(infoService);
 		
