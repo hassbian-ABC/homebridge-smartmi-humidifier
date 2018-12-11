@@ -83,20 +83,20 @@ MiHumidifier.prototype = {
 	currentHumidifierDehumidifierStateCharacteristic.setProps({
             validValues: [0,2]
         });
-	//currentHumidifierDehumidifierStateCharacteristic.value = Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING;
+	
         var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
         targetHumidifierDehumidifierStateCharacteristic.setProps({
             validValues: [1]
         });
-	//targetHumidifierDehumidifierStateCharacteristic.value = Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER;
+
 
         var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
         var lockPhysicalControlsCharacteristic = humidifierService.addCharacteristic(Characteristic.LockPhysicalControls);
 	    var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
         var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
 	    rotationSpeedCharacteristic.setProps({
-	      minValue: 0, // idle (model:zhimi.humidifier.ca1, 0 = auto)
-          maxValue: 100, // high
+	      minValue: 0,
+          maxValue: 100,
           minStep: 25,
 	    });
 		var relativeHumidityHumidifierThresholdCharacteristic = humidifierService.addCharacteristic(Characteristic.RelativeHumidityHumidifierThreshold);
