@@ -46,7 +46,7 @@ function MiHumidifier(log, config) {
     this.config = config;
     
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
-    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by hassbian-ABC 0.0.1");
+    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by hassbian-ABC 0.0.6");
     this.log.info("[MiHumidifierPlatform][INFO]  GitHub: https://github.com/hassbian-ABC/homebridge-MiHumidifier ");
     this.log.info("[MiHumidifierPlatform][INFO]                                                                  ");
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
