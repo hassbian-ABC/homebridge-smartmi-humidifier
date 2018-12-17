@@ -18,7 +18,7 @@ If you are using Raspberry Pi, please read [Running-HomeBridge-on-a-Raspberry-Pi
 npm install -g https://github.com/hassbian-ABC/homebridge-MiHumidifier
 ```
 
-
+zhimi.humidifier.ca1  ++++   "model": "ca1",
 ```
 "accessories": [
     {
