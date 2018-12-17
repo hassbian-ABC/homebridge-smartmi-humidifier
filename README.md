@@ -1,4 +1,4 @@
-# homebridge-MiHumidifier
+# homebridge-smartmi-humidifier
 
 
 
