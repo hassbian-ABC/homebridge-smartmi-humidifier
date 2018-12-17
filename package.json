@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-MiHumidifier",
+  "name": "homebridge-smartmi-humidifier",
   "version": "0.0.7",
   "description": "XiaoMi Humidifier plugin for HomeBridge(https://github.com/nfarina/homebridge).",
   "keywords": [
@@ -8,10 +8,10 @@
   "author": "hassbian-ABC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hassbian-ABC/homebridge-MiHumidifier"
+    "url": "https://github.com/hassbian-ABC/homebridge-smartmi-humidifier"
   },
   "bugs": {
-    "url": "https://github.com/hassbian-ABC/homebridge-MiHumidifier/issues"
+    "url": "https://github.com/hassbian-ABC/homebridge-smartmi-humidifier/issues"
   },
   "engines": {
     "node": ">=0.12.0",
