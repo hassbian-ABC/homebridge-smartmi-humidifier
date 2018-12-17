@@ -13,7 +13,7 @@ module.exports = function(homebridge) {
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
 
-    homebridge.registerAccessory('homebridge-MiHumidifier', 'MiHumidifier', MiHumidifier);
+    homebridge.registerAccessory('homebridge-smartmi-humidifier', 'MiHumidifier', MiHumidifier);
 }
 
 function isConfig(configFile, type, name) {
