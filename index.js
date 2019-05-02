@@ -141,7 +141,7 @@ MiHumidifier.prototype = {
 						swingModeControlsCharacteristic.updateValue(Characteristic.SwingMode.SWING_DISABLED);
 					}
 					if (this.model === 'ca1') {
-						waterLevel.updateValue(result[4]);
+						waterLevel.updateValue(result[4] / 1.2);
 					}
 					currentHumidityCharacteristic.updateValue(result[1]);
 					callback(null, result[5])
