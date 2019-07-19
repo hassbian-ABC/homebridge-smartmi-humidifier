@@ -92,11 +92,11 @@ MiHumidifier.prototype = {
 
         var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
         var lockPhysicalControlsCharacteristic = humidifierService.addCharacteristic(Characteristic.LockPhysicalControls);
-	    if (this.model === 'ca1') {
+	    if (this.model === 'ca1' || 'cb1') {
 		var waterLevel = humidifierService.getCharacteristic(Characteristic.WaterLevel);
 		}
         var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
-		if (this.model === 'ca1') {
+		if (this.model === 'ca1' || 'cb1') {
 	    rotationSpeedCharacteristic.setProps({
 	      minValue: 0,
           maxValue: 100,
@@ -140,7 +140,7 @@ MiHumidifier.prototype = {
 					} else if (result[3] === "off") {
 						swingModeControlsCharacteristic.updateValue(Characteristic.SwingMode.SWING_DISABLED);
 					}
-					if (this.model === 'ca1') {
+					if (this.model === 'ca1' || 'cb1') {
 						waterLevel.updateValue(result[4] / 1.2);
 					}
 					currentHumidityCharacteristic.updateValue(result[1]);
@@ -219,7 +219,7 @@ rotationSpeedCharacteristic
      .on('get', function(callback) {
             that.device.call('get_prop',['mode']).then(result => {
 				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getMode: " + result);
-            if (this.model === 'ca1') {
+            if (this.model === 'ca1' || 'cb1') {
 			   if(result[0] === "auto") {
                         callback(null, 25);
                 } else if(result[0] === "silent") { 
@@ -249,7 +249,7 @@ rotationSpeedCharacteristic
         }.bind(this))
         .on('set', function(value, callback) {
 			    that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - setMode: " + value);
-			if (this.model === 'ca1') {
+			if (this.model === 'ca1' || 'cb1') {
 			    if(value == 25) {
                     that.device.call("set_mode", ["auto"]).then(result => {
                         if(result[0] === "ok") {
@@ -362,13 +362,23 @@ rotationSpeedCharacteristic
         temperatureSensorService
 		    .getCharacteristic(Characteristic.CurrentTemperature)
 			.on('get', function(callback) {
+                if (this.model !== 'cb1') {
                     that.device.call("get_prop", ["temp_dec"]).then(result => {
 					that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
                     callback(null, result[0] / 10);
-            }).catch(function(err) {
-				that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
-				callback(err);
-		    });
+                   }).catch(function(err) {
+				      that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
+				      callback(err);
+		           });
+                } else {
+                   that.device.call("get_prop", ["temperature"]).then(result => {
+					that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
+                    callback(null, result[0] / 10);
+                   }).catch(function(err) {
+				      that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
+				      callback(err);
+		           }); 
+                }
         }.bind(this));
 	services.push(temperatureSensorService);
 	
