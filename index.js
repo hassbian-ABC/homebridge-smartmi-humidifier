@@ -373,7 +373,7 @@ rotationSpeedCharacteristic
                 } else {
                    that.device.call("get_prop", ["temperature"]).then(result => {
 					that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature: " + result);
-                    callback(null, result[0] / 10);
+                    callback(null, result[0]);
                    }).catch(function(err) {
 				      that.log.debug("[MiHumidifier][DEBUG]HumidifierDehumidifier - getTemperature Error: " + err);
 				      callback(err);
