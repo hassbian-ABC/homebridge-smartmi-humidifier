@@ -28,7 +28,7 @@
         "showTemperatureSensorName": {
           "title": "(RU) Имя датчика температуры",
           "type": "string",
-          "format": "string",
+          "format": "string"
         },
           "showTemperatureDisable": {
           "title": "(RU) Скрыть датчик температуры",
@@ -42,7 +42,14 @@
           "default": 60,
           "description": "Время обновления устройств. Необходимо для автоматизаций",
           "required": false
-        
+        },
+        "model": {
+         "title": "Model",
+         "type": "string",
+         "format": "string",
+         "default": "ca1",
+         "description": "Код модели увлажнителя",
+         "required": false
       }
     }
   }
