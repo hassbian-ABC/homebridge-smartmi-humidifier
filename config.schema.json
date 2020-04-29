@@ -1,0 +1,49 @@
+{
+    "pluginAlias": "MiHumidifier",
+    "pluginType": "accessory",
+    "singular": true,
+    "headerDisplay": null,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "(RU) Название увлажнителя",
+          "type": "string",
+          "format": "string",
+          "minLength": 1,
+          "required": true
+        },
+        "ip": {
+          "title": "IP Adress",
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+         "token": {
+          "title": "Token",
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "showTemperatureSensorName": {
+          "title": "(RU) Имя датчика температуры",
+          "type": "string",
+          "format": "string",
+        },
+          "showTemperatureDisable": {
+          "title": "(RU) Скрыть датчик температуры",
+          "type": "boolean",
+          "description": "Не показывать отдельный датчик температуры в HomeKit",
+          "default": false
+        },
+        "updateTimer": {
+          "title": "(RU) Время обновления (сек)",
+          "type": "integer",
+          "default": 60,
+          "description": "Время обновления устройств. Необходимо для автоматизаций",
+          "required": false
+        
+      }
+    }
+  }
+}
