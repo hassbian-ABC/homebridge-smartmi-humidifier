@@ -1,7 +1,7 @@
 {
     "pluginAlias": "MiHumidifier",
     "pluginType": "accessory",
-    "singular": true,
+    "singular": false,
     "headerDisplay": null,
     "schema": {
       "type": "object",
