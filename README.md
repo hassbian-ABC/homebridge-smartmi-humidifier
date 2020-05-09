@@ -27,7 +27,8 @@ zhimi.humidifier.ca1  ++++   "model": "ca1",
       "ip": "192.168.1.77",
       "token": "7251f2fdc5eda606d9125d882c932914",
       "showTemperatureDisable": false,
-      "showTemperatureSensorName": "zhimi.humidifier.v1温度"
+      "showTemperatureSensorName": "zhimi.humidifier.v1温度",
+      "updateTimer": 60
     },
     {
       "accessory": "MiHumidifier",
@@ -36,7 +37,8 @@ zhimi.humidifier.ca1  ++++   "model": "ca1",
       "token": "7251f2fdc5eda606d9125d882c932914",
       "model": "ca1",
       "showTemperatureDisable": false,
-      "showTemperatureSensorName": "zhimi.humidifier.ca1温度"
+      "showTemperatureSensorName": "zhimi.humidifier.ca1温度",
+      "updateTimer": 60
     },
     {
       "accessory": "MiHumidifier",
@@ -45,7 +47,8 @@ zhimi.humidifier.ca1  ++++   "model": "ca1",
       "token": "7251f2fdc5eda606d9125d882c932914",
       "model": "cb1",
       "showTemperatureDisable": false,
-      "showTemperatureSensorName": "zhimi.humidifier.cb1温度"
+      "showTemperatureSensorName": "zhimi.humidifier.cb1温度",
+      "updateTimer": 60
     }
   ]
 ```
