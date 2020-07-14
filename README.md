@@ -4,9 +4,9 @@
 
 Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) ,[acc-ua](https://github.com/acc-ua) , [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
   
-![](https://github.com/hassbian-ABC/homebridge-MiHumidifier/blob/master/images/home.png)
-![](https://github.com/hassbian-ABC/homebridge-MiHumidifier/blob/master/images/home1.png)
-![](https://github.com/hassbian-ABC/homebridge-MiHumidifier/blob/master/images/home2.png)
+![](https://github.com/hassbian-ABC/homebridge-smartmi-humidifier/tree/master/images/home.png)
+![](https://github.com/hassbian-ABC/homebridge-smartmi-humidifier/tree/master/images/home1.png)
+![](https://github.com/hassbian-ABC/homebridge-smartmi-humidifier/tree/master/images/home2.png)
 
  
 ## Installation
